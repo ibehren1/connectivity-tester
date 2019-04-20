@@ -1,0 +1,14 @@
+---
+  - hosts: all
+    become: yes
+    roles:
+      - { role: management-zone, when: zone == 'management-zone' }
+      - { role: product-high-zone, when: zone == 'product-high-zone' }
+      - { role: product-moderate-zone, when: zone == 'product-moderate-zone' }
+      - { role: pcf-management-zone, when: zone == 'pcf-management-zone' }
+      - { role: pcf-platform-high-zone, when: zone == 'pcf-platform-high-zone' }
+      - { role: pcf-platform-moderate-zone, when: zone == 'pcf-platform-moderate-zone' }
+      - { role: cf-management-zone, when: zone == 'cf-management-zone' }
+      - { role: interactive-zone, when: zone == 'interactive-zone' }
+    vars:
+      reboot_ok: false

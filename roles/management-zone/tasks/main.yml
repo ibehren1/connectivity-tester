@@ -1,0 +1,40 @@
+---
+
+  - name: "Ping Internet"
+    command: 'ping -c 5 8.8.8.8'
+
+  - name: "Ping management-zone"
+    command: 'ping -c 5 {{ item }}'
+    with_items: "{{ groups['Management'] }}"
+
+  - name: "Ping product-high-zone"
+    command: 'ping -c 5 {{ item }}'
+    with_items: "{{ groups['Product-High'] }}"
+
+  - name: "Ping product-moderate-zone"
+    command: 'ping -c 5 {{ item }}'
+    with_items: "{{ groups['Product-Moderate'] }}"
+
+  - name: "Ping pcf-management-zone"
+    command: 'ping -c 5 {{ item }}'
+    with_items: "{{ groups['PCF-Management'] }}"
+
+  - name: "Ping pcf-platform-high-zone"
+    command: 'ping -c 5 {{ item }}'
+    with_items: "{{ groups['PCF-Platform-High'] }}"
+
+  - name: "Ping pcf-platform-moderate-zone"
+    command: 'ping -c 5 {{ item }}'
+    with_items: "{{ groups['PCF-Platform-Moderate'] }}"
+
+  - name: "Ping cf-management-zone"
+    command: 'ping -c 5 {{ item }}'
+    with_items: "{{ groups['CF-Management'] }}"
+
+  - name: "Ping interactive-zone"
+    command: 'ping -c 5 {{ item }}'
+    with_items: "{{ groups['Interactive'] }}"
+
+  - name: "Ping transit-zone"
+    command: 'ping -c 5 {{ item }}'
+    with_items: "{{ groups['Transit'] }}"

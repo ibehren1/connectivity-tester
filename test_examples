@@ -1,0 +1,63 @@
+# - name: "DNS Resolution Check"
+#   command: "dig mail.allstate.com"
+#
+# - name: "DNS Resolution Failure"
+#   command: "dig isaac.allstate.com"
+#
+# - name: Check all port numbers are accessible from current host
+#   wait_for:
+#     host: {{ item }}
+#     port: 22
+#     state: started         # Port should be open
+#     delay: 0               # No wait before first check (sec)
+#     timeout: 3             # Stop checking after timeout (sec)
+#   ignore_errors: yes
+#   with_items: groups.Prod
+#
+# - name: Check all port numbers are accessible from current host
+#   wait_for:
+#     host: www.google.com
+#     port: "{{ item }}"
+#     state: started         # Port should be open
+#     delay: 0               # No wait before first check (sec)
+#     timeout: 3             # Stop checking after timeout (sec)
+#   ignore_errors: yes
+#   with_items:
+#     - 443
+#
+# - name: Check all port numbers are accessible from current host
+#   wait_for:
+#     host: ubudns01
+#     port: "{{ item }}"
+#     state: started         # Port should be open
+#     delay: 0               # No wait before first check (sec)
+#     timeout: 3             # Stop checking after timeout (sec)
+#   ignore_errors: yes
+#   with_items:
+#     - 53
+
+
+# - name: Run "apt-get update"
+#   apt:
+#     update_cache: yes
+#
+# - name: Run "apt-get dist-upgrade"
+#   apt:
+#     upgrade: dist
+#
+# - name: Check if reboot is required.
+#   stat:
+#     path: /var/run/reboot-required
+#   register: reboot_required
+#
+# - debug:
+#     msg: "Reboot is required!!!"
+#   when: reboot_required.stat.exists == True
+#
+# - include_role:
+#     name: reboot_host
+#   when: reboot_required.stat.exists == True and reboot_ok
+#
+# - name: Run "apt-get autoremove"
+#   apt:
+#     autoremove: yes
